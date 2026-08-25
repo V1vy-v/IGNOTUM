@@ -5,17 +5,17 @@ using UnityEngine;
 /// </summary>
 public class PartCollider : MonoBehaviour
 {
-    private MonsterObj monster;
+    private BaseMonster monster;
 
     void Start()
     {
-        monster = GetComponentInParent<MonsterObj>(); 
+        monster = GetComponentInParent<BaseMonster>(); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("PlayerArrow")) return;
 
-        monster.OnPartHit(gameObject.tag);
+        monster.Wound(gameObject.tag);
     }
 }
