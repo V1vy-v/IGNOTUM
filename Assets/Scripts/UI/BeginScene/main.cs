@@ -8,7 +8,7 @@ using UnityEngine;
 public class main : MonoBehaviour
 {
     
-    void Start()
+    void Awake()
     {
         UIManager.Instance.ShowPanel<BeginPanel>();
     }
