@@ -6,4 +6,9 @@ public class MonsterData
 {
     public int heartHp = 1;
     public int headHp = 1;
+
+    public bool IsDead()
+    {
+        return heartHp == 0 && headHp == 0;
+    }
 }
