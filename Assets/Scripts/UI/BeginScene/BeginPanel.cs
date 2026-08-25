@@ -23,7 +23,7 @@ public class BeginPanel : BasePanel
         BtnStart.onClick.AddListener(()=>
         {
             UIManager.Instance.HidePanel<BeginPanel>();
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("GameScene");
         });
 
         //设置按钮初始化

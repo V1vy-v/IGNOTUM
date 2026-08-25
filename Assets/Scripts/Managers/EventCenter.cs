@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public interface IEventInfo
 {
+
 }
 
 public class EventInfo<T> : IEventInfo
