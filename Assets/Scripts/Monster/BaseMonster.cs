@@ -11,8 +11,8 @@ public abstract class BaseMonster : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected PlayerObject playerObject;
 
-    [SerializeField] protected float moveSpeed = 3f;//ÒÆ¶¯²ÎÊý
-    [SerializeField] protected float attackRange = 3f;//¹¥»÷·¶Î§
+    [SerializeField] protected float moveSpeed = 3.5f;//ÒÆ¶¯²ÎÊý
+    [SerializeField] protected float attackRange;//¹¥»÷·¶Î§
 
     //¶¯»­²ÎÊý¹þÏ£
     protected int walkHash;
@@ -52,7 +52,7 @@ public abstract class BaseMonster : MonoBehaviour
     protected virtual void ChangeState()
     {
         float distance = Vector2.Distance(transform.position, playerObject.transform.position);
-        state = distance < attackRange ? MonsterState.Idle : MonsterState.Walk;
+        state = distance < attackRange * 1.5f ? MonsterState.Idle : MonsterState.Walk;
     }
 
     /// <summary>

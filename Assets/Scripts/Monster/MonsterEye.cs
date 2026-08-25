@@ -8,14 +8,6 @@ public class MonsterEye : BaseMonster
 
     [SerializeField] private int eyeHp = 1;
 
-    public Collider2D normalHeadCollider;
-    public Collider2D normalHeartCollider;
-    public Collider2D newHeadCollider;
-    public Collider2D newHeartCollider;
-
-    //攻击间隔时间
-    [SerializeField] private float attackOffset = 5f;
-
     private float currentAttackTime = -1f;
     private int attackHash;
 
@@ -23,21 +15,14 @@ public class MonsterEye : BaseMonster
     {
         base.Start();
         attackHash = Animator.StringToHash("Attack");
+
+        attackRange = 0f;
     }
 
     protected override void Update()
     {
         base.Update();
 
-    }
-    public override void TryAttack()
-    {
-        if (playerObject == null) return;
-        if (state == MonsterState.Idle && Time.time - currentAttackTime > attackOffset)
-        {
-            animator.SetBool(attackHash, true);
-            currentAttackTime = Time.time;
-        }
     }
 
     public override void Wound(string partTag)
@@ -58,5 +43,8 @@ public class MonsterEye : BaseMonster
         }
     }
 
-   
+    public override void TryAttack()
+    {
+        //追逐战，只处理碰撞逻辑
+    }
 }

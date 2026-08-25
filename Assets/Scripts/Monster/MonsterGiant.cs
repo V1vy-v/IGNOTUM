@@ -9,18 +9,31 @@ public class MonsterGiant : BaseMonster
     [SerializeField] private float attackOffset = 5f;
 
     private float currentAttackTime = -1f;
-    private int attackHash;
+    private int clawAttackHash;
+    private int trampleHash;
 
-    //受伤判定碰撞体
-    public Collider2D normalHeadCollider;
-    public Collider2D normalHeartCollider;
-    public Collider2D newHeadCollider;
-    public Collider2D newHeartCollider;
+    //受伤判定碰撞体(父物体)
+    public GameObject normalHeadColliderObj;
+    public GameObject normalHeartColliderObj;
+    public GameObject newHeadColliderObj;
+    public GameObject newHeartColliderObj;
+    //脚部碰撞体父物体
+    public GameObject FeetColliderObj;
+    //爪子碰撞体父物体
+    public GameObject ClawColliderObj;
 
     protected override void Start()
     {
         base.Start();
-        attackHash = Animator.StringToHash("Attack");
+        clawAttackHash = Animator.StringToHash("ClawAttack");
+        trampleHash = Animator.StringToHash("Trample");
+
+        normalHeadColliderObj.SetActive(true);
+        normalHeartColliderObj.SetActive(true);
+        ClawColliderObj.SetActive(false);
+        FeetColliderObj.SetActive(false);
+
+        attackRange = 3f;
     }
 
     public override void TryAttack()
@@ -28,8 +41,19 @@ public class MonsterGiant : BaseMonster
         if (playerObject == null) return;
         if (state == MonsterState.Idle && Time.time - currentAttackTime > attackOffset)
         {
-            animator.SetBool(attackHash, true);
-            currentAttackTime = Time.time;
+            float distance = Mathf.Abs(playerObject.transform.position.x - this.transform.position.x);
+            if (distance < attackRange)
+            {
+                animator.SetBool(trampleHash,true);
+                currentAttackTime = Time.time;
+                return;
+            }
+            else if(distance < attackRange * 2)
+            {
+                animator.SetBool(clawAttackHash, true);
+                currentAttackTime = Time.time;
+                return;
+            }
         }
     }
 
@@ -67,7 +91,17 @@ public class MonsterGiant : BaseMonster
     }
 
     // 由动画事件调用，用于切换碰撞体
-    public void ChangeColliderOnAnimation()
+    public void OnClawAtkAnimation()
     {
+        ClawColliderObj.SetActive(true);
+    }
+    public void OnTrampleAnimation()
+    {
+        FeetColliderObj.SetActive(true);
+    }
+    public void ResetAfterAnimation()
+    {
+        ClawColliderObj.SetActive(false);
+        FeetColliderObj.SetActive(false);
     }
 }
