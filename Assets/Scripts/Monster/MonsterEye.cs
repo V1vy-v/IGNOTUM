@@ -23,6 +23,8 @@ public class MonsterEye : BaseMonster
     {
         base.Start();
         attackHash = Animator.StringToHash("Attack");
+
+        //¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
     }
 
     protected override void Update()

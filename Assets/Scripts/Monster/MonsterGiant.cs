@@ -35,8 +35,9 @@ public class MonsterGiant : BaseMonster
         //FeetColliderObj?.SetActive(false);
         ClawColliderObj.SetActive(false);
 
-
         attackRange = 4f;
+
+        //¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
     }
 
     public override void TryAttack()

@@ -17,6 +17,8 @@ public class DeadChange : MonoBehaviour
     {
         instance = this;
         light2D = GetComponent<Light2D>();
+        //¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
+        EventCenter.GetInstance().AddEventlistener("PlayerDead", DarkChange);
     }
 
     /// <summary>
