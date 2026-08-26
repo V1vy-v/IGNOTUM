@@ -71,13 +71,13 @@ public abstract class BaseMonster : MonoBehaviour
         if (state == MonsterState.Idle)
         {
             print("进入攻击范围");
-            agent.isStopped = true;
+            //agent.isStopped = true;
             rb.velocity = Vector2.zero;
             return;
         }
         //Vector2 direction = (playerObject.transform.position - transform.position).normalized;
         //rb.velocity = direction * moveSpeed;
-        agent.SetDestination(playerObject.transform.position);
+        //agent.SetDestination(playerObject.transform.position);
     }
 
     /// <summary>
@@ -88,7 +88,13 @@ public abstract class BaseMonster : MonoBehaviour
         animator.SetBool(walkHash, state == MonsterState.Walk);
         if (state == MonsterState.Walk)
         {
-            spriteRenderer.flipX = playerObject.transform.position.x - transform.position.x > 0;
+            // 使用 localScale 翻转
+            Vector3 scale = transform.localScale;
+            if (playerObject.transform.position.x < transform.position.x)
+                scale.x = Mathf.Abs(scale.x);
+            else
+                scale.x = -Mathf.Abs(scale.x);
+            transform.localScale = scale;
         }
     }
 
