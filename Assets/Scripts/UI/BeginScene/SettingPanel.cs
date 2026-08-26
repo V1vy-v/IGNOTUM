@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingPanel : BasePanel
@@ -22,7 +23,14 @@ public class SettingPanel : BasePanel
             TogMusic.isOn = v;
             GameDataMgr.Instance.musicData.isMusic = v;
             //更新调整后的音乐
-            BeginSceneMusic.Instance.updateMusic();
+            if(SceneManager.GetActiveScene().name == "BeginScene")
+            {
+                BeginSceneMusic.Instance.updateMusic();
+            }
+            else
+            {
+                GameSceneMusic.Instance.updateMusic();
+            }
         });
 
         TogSound.onValueChanged.AddListener((v) =>
@@ -30,7 +38,14 @@ public class SettingPanel : BasePanel
             TogSound.isOn = v;
             GameDataMgr.Instance.musicData.isSound = v;
             //更新调整后的音乐
-            BeginSceneMusic.Instance.updateMusic();
+            if (SceneManager.GetActiveScene().name == "BeginScene")
+            {
+                BeginSceneMusic.Instance.updateMusic();
+            }
+            else
+            {
+                GameSceneMusic.Instance.updateMusic();
+            }
         });
 
         MusicValue.onValueChanged.AddListener((v) =>
@@ -38,7 +53,14 @@ public class SettingPanel : BasePanel
             MusicValue.value = v;
             GameDataMgr.Instance.musicData.musicValue = v;
             //更新调整后的音乐
-            BeginSceneMusic.Instance.updateMusic();
+            if (SceneManager.GetActiveScene().name == "BeginScene")
+            {
+                BeginSceneMusic.Instance.updateMusic();
+            }
+            else
+            {
+                GameSceneMusic.Instance.updateMusic();
+            }
         });
 
         SoundValue.onValueChanged.AddListener((v) =>
@@ -46,7 +68,14 @@ public class SettingPanel : BasePanel
             SoundValue.value = v;
             GameDataMgr.Instance.musicData.soundValue = v;
             //更新调整后的音乐
-            BeginSceneMusic.Instance.updateMusic();
+            if (SceneManager.GetActiveScene().name == "BeginScene")
+            {
+                BeginSceneMusic.Instance.updateMusic();
+            }
+            else
+            {
+                GameSceneMusic.Instance.updateMusic();
+            }
         });
 
         BtnBack.onClick.AddListener(() =>
@@ -55,6 +84,7 @@ public class SettingPanel : BasePanel
             GameDataMgr.Instance.SaveMusicData();
             //隐藏设置面板
             UIManager.Instance.HidePanel<SettingPanel>();
+            Time.timeScale = 1.0f;
         });
     }
 
