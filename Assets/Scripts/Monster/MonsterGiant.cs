@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-
 public class MonsterGiant : BaseMonster
 {
 
@@ -10,6 +9,7 @@ public class MonsterGiant : BaseMonster
     //¹¥»÷¼ä¸ôÊ±¼ä
     [SerializeField] private float attackOffset = 2f;
 
+    //private CinemachineImpulseSource impulseSource;//
     private float currentAttackTime = -5f;
     private int clawAttackHash;
     private int trampleHash;
