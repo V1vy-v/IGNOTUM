@@ -7,9 +7,13 @@ public class GameSceneMusic : MonoBehaviour
     //提供给外部的接口
     private static GameSceneMusic instance;
     public static GameSceneMusic Instance=>instance;
-
+    
     //获取音频组件(一共两个)
     public AudioSource[] audioSources;
+
+    //当前心跳协程引用，用来停止渐变
+    private Coroutine _heartBeatCor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,24 +38,46 @@ public class GameSceneMusic : MonoBehaviour
             return;
         }
         audioSources[1].clip = Resources.Load<AudioClip>("Music/"+musicAddress);
-        audioSources[1].mute= !GameDataMgr.Instance.musicData.isMusic;
+        audioSources[1].Play();
     }
 
     /// <summary>
-    /// 控制hartbeat音频（即audioSources[0]）是否随着时间加速
+    /// 控制heartbeat音频是否开启加速渐变
+    /// true：在指定时间内 pitch从1 → 1.5
+    /// false：在指定时间内 pitch从当前 → 1.0
     /// </summary>
-    /// <param name="isOpen"></param>
-    public void HartBeatFast(bool isOpen)
+    /// <param name="isOpen">是否开启加速</param>
+    /// <param name="duration">渐变耗时，秒</param>
+    public void HartBeatFast(bool isOpen, float duration = 10.0f)
     {
-        //音乐加速
-        if(isOpen)
+        if (audioSources == null || audioSources.Length < 1) return;
+
+        // 如果上一个渐变还在跑，先停止
+        if (_heartBeatCor != null)
         {
-            audioSources[0].pitch = 1.15f;
+            StopCoroutine(_heartBeatCor);
+            _heartBeatCor = null;
         }
-        //音乐减速
-        else
+
+        float targetPitch = isOpen ? 1.3f : 0.8f;
+        _heartBeatCor = StartCoroutine(PitchSmoothCor(audioSources[0], targetPitch, duration));
+    }
+
+    /// <summary>
+    /// 协程：平滑修改AudioSource pitch
+    /// </summary>
+    IEnumerator PitchSmoothCor(AudioSource source, float targetPitch, float time)
+    {
+        float startPitch = source.pitch;
+        float t = 0;
+        while (t < time)
         {
-            audioSources[0].pitch = 1.0f;
+            t += Time.deltaTime;
+            float progress = Mathf.Clamp01(t / time);
+            source.pitch = Mathf.Lerp(startPitch, targetPitch, progress);
+            yield return null;
         }
+        source.pitch = targetPitch;
+        _heartBeatCor = null;
     }
 }
