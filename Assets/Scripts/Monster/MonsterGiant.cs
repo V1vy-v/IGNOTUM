@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterGiant : BaseMonster
 {
+
     [SerializeField] private int heartHp = 1;
     [SerializeField] private int headHp = 1;
 
     //¹¥»÷¼ä¸ôÊ±¼ä
-    [SerializeField] private float attackOffset = 3f;
+    [SerializeField] private float attackOffset = 2f;
 
-    private float currentAttackTime = -1f;
+    private float currentAttackTime = -5f;
     private int clawAttackHash;
     private int trampleHash;
 
@@ -23,7 +25,6 @@ public class MonsterGiant : BaseMonster
     public GameObject ClawColliderObjL;
     public GameObject ClawColliderObjR;
 
-    //private float distance;
 
     protected override void Start()
     {

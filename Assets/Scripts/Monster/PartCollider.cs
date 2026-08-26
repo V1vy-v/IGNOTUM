@@ -6,16 +6,17 @@ using UnityEngine;
 public class PartCollider : MonoBehaviour
 {
     private BaseMonster monster;
+    private int playerArrowLayer;
 
     void Start()
     {
-        monster = GetComponentInParent<BaseMonster>(); 
+        monster = GetComponentInParent<BaseMonster>();
+        playerArrowLayer = LayerMask.NameToLayer("PlayerArrow");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("PlayerArrow")) return;
-
+        if (other.gameObject.layer != playerArrowLayer) return;
         monster.Wound(gameObject.tag);
     }
 }
