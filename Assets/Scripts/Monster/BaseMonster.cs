@@ -9,14 +9,16 @@ public abstract class BaseMonster : MonoBehaviour
     protected Animator animator;
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
-    protected PlayerObject playerObject;
+    public PlayerObject playerObject;
 
-    [SerializeField] protected float moveSpeed = 3f;//ÒÆ¶¯²ÎÊý
-    [SerializeField] protected float attackRange = 3f;//¹¥»÷·¶Î§
+    [SerializeField] protected float moveSpeed = 3.5f;//ÒÆ¶¯²ÎÊý
+    [SerializeField] protected float attackRange;//¹¥»÷·¶Î§
 
     //¶¯»­²ÎÊý¹þÏ£
     protected int walkHash;
     protected int deadHash;
+
+    protected float distance;
 
     protected enum MonsterState { Idle, Walk }
     protected MonsterState state = MonsterState.Idle;
@@ -45,14 +47,14 @@ public abstract class BaseMonster : MonoBehaviour
         TryAttack();
     }
 
-    
+
     /// <summary>
     /// ÇÐ»»×´Ì¬
     /// </summary>
     protected virtual void ChangeState()
     {
-        float distance = Vector2.Distance(transform.position, playerObject.transform.position);
-        state = distance < attackRange ? MonsterState.Idle : MonsterState.Walk;
+        distance = Vector2.Distance(transform.position, playerObject.transform.position);
+        state = distance < attackRange * 1.5f ? MonsterState.Idle : MonsterState.Walk;
     }
 
     /// <summary>
@@ -62,6 +64,7 @@ public abstract class BaseMonster : MonoBehaviour
     {
         if (state == MonsterState.Idle)
         {
+            print("½øÈë¹¥»÷·¶Î§");
             rb.velocity = Vector2.zero;
             return;
         }
@@ -77,7 +80,7 @@ public abstract class BaseMonster : MonoBehaviour
         animator.SetBool(walkHash, state == MonsterState.Walk);
         if (state == MonsterState.Walk)
         {
-            spriteRenderer.flipX = playerObject.transform.position.x - transform.position.x < 0;
+            spriteRenderer.flipX = playerObject.transform.position.x - transform.position.x > 0;
         }
     }
 
