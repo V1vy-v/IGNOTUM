@@ -6,7 +6,6 @@ public class PlayerObject : MonoBehaviour
 {
     //玩家属性
     public float hp;
-    public float sanity;
     public int Speed;
 
     //当前复活点
@@ -95,7 +94,6 @@ public class PlayerObject : MonoBehaviour
     {
         arrowObj = Instantiate(Resources.Load<GameObject>("prefab/arrow"), firePos.position, Quaternion.identity);
         arrowObj.GetComponent<ArrowObject>().Fire(tarPos - firePos.position);
-
 
         isShooting = false;
     }
