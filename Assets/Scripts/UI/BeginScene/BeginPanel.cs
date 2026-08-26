@@ -11,8 +11,6 @@ public class BeginPanel : BasePanel
     public Button BtnStart;
     //设置按钮
     public Button BtnSetting;
-    //退出按钮
-    public Button BtnQuit;
 
     /// <summary>
     /// 面板控件初始化
@@ -30,12 +28,6 @@ public class BeginPanel : BasePanel
         BtnSetting.onClick.AddListener(()=>
         {
             UIManager.Instance.ShowPanel<SettingPanel>();
-        });
-
-        //退出按钮初始化
-        BtnQuit.onClick.AddListener(()=>
-        {
-            Application.Quit();
         });
     }
 }
