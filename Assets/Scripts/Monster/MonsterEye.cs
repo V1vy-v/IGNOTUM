@@ -1,42 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class MonsterEye : BaseMonster
 {
-
     [SerializeField] private int eyeHp = 1;
 
-    public Collider2D normalHeadCollider;
-    public Collider2D normalHeartCollider;
-    public Collider2D newHeadCollider;
-    public Collider2D newHeartCollider;
-
-    //¹¥»÷¼ä¸ôÊ±¼ä
-    [SerializeField] private float attackOffset = 5f;
-
-    private float currentAttackTime = -1f;
-    private int attackHash;
-
-    protected override void Start()
+    protected override void ChangeState()
     {
-        base.Start();
-        attackHash = Animator.StringToHash("Attack");
+        state = MonsterState.Walk;
     }
 
-    protected override void Update()
+    protected override void SetAnimator()
     {
-        base.Update();
-
+        Vector3 scale = transform.localScale;
+        if (playerObject.transform.position.x < transform.position.x)
+            scale.x = Mathf.Abs(scale.x);
+        else
+            scale.x = -Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
-    public override void TryAttack()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (playerObject == null) return;
-        if (state == MonsterState.Idle && Time.time - currentAttackTime > attackOffset)
+        int playerLayer = LayerMask.NameToLayer("Player");
+
+        if (other.gameObject.layer == playerLayer)
         {
-            animator.SetBool(attackHash, true);
-            currentAttackTime = Time.time;
+            Debug.Log("¹ÖÎï¹¥»÷");
+            other.GetComponent<PlayerObject>().Wound(9999);
         }
     }
 
@@ -45,18 +36,21 @@ public class MonsterEye : BaseMonster
         switch (partTag)
         {
             case "Eye":
-                if (eyeHp <= 0)
-                    return;
+                if (eyeHp <= 0) return;
                 eyeHp--;
                 break;
         }
-        if(eyeHp <= 0)
+
+        if (eyeHp <= 0)
         {
-            //Ö´ÐÐËÀÍöÂß¼­
-            animator.SetBool(deadHash, true);
-            StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+            print("¹ÖÎïËÀÍö");
+            // Ö´ÐÐËÀÍöÂß¼­
+            // animator.SetBool(deadHash, true);
+            // StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
         }
     }
 
-   
+    public override void TryAttack()
+    {
+    }
 }

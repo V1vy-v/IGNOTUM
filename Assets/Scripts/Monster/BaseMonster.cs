@@ -35,7 +35,8 @@ public abstract class BaseMonster : MonoBehaviour
         InitializeAnimationHashes();
         agent.speed = moveSpeed;
         agent.acceleration = 2f;
-        print(agent.speed);
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     protected virtual void InitializeAnimationHashes()
