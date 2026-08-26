@@ -80,4 +80,14 @@ public class GameSceneMusic : MonoBehaviour
         source.pitch = targetPitch;
         _heartBeatCor = null;
     }
+
+
+    //更新音源数据
+    public void updateMusic()
+    {
+        audioSources[0].mute = !GameDataMgr.Instance.musicData.isMusic;
+        audioSources[0].volume = GameDataMgr.Instance.musicData.musicValue;
+        audioSources[1].mute = !GameDataMgr.Instance.musicData.isMusic;
+        audioSources[1].volume = GameDataMgr.Instance.musicData.musicValue;
+    }
 }
