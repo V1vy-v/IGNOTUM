@@ -4,8 +4,8 @@ using UnityEngine.AI;
 public class MonsterGiant : BaseMonster
 {
 
-    [SerializeField] private int heartHp = 1;
-    [SerializeField] private int headHp = 1;
+    [SerializeField] private int heartHp = 2;
+    [SerializeField] private int headHp = 2;
 
     //攻击间隔时间
     [SerializeField] private float attackOffset = 2f;
@@ -67,10 +67,12 @@ public class MonsterGiant : BaseMonster
             case "Heart":
                 if (heartHp <= 0) return;
                 heartHp--;
+                print("心脏受伤");
                 break;
             case "Head":
                 if (headHp <= 0) return;
                 headHp--;
+                print("头部受伤");
                 break;
             default:
                 return;
@@ -78,8 +80,10 @@ public class MonsterGiant : BaseMonster
 
         if (heartHp <= 0 && headHp <= 0)
         {
-            animator.SetBool(deadHash, true);
-            StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+            print("怪物死亡");
+            this.gameObject.SetActive(false);
+            //animator.SetBool(deadHash, true);
+            //StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
         }
     }
 
@@ -96,7 +100,7 @@ public class MonsterGiant : BaseMonster
     public void OnClawAtkAnimation()
     {
         print("设置碰撞体");
-        ClawColliderObj.SetActive(spriteRenderer.flipX);
+        ClawColliderObj.SetActive(true);
     }
 
     public void OnTrampleAnimation()

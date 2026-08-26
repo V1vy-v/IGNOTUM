@@ -16,7 +16,9 @@ public class PartCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        print(11);
         if (other.gameObject.layer != playerArrowLayer) return;
-        monster.Wound(gameObject.tag);
+        monster.Wound(LayerMask.LayerToName(gameObject.layer));
+        print(LayerMask.LayerToName(gameObject.layer) + " ‹…À");
     }
 }

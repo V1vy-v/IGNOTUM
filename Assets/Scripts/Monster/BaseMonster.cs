@@ -71,13 +71,14 @@ public abstract class BaseMonster : MonoBehaviour
         if (state == MonsterState.Idle)
         {
             print("½øÈë¹¥»÷·¶Î§");
-            //agent.isStopped = true;
+            agent.isStopped = true;
             rb.velocity = Vector2.zero;
             return;
         }
         //Vector2 direction = (playerObject.transform.position - transform.position).normalized;
         //rb.velocity = direction * moveSpeed;
-        //agent.SetDestination(playerObject.transform.position);
+        agent.isStopped = false;
+        agent.SetDestination(playerObject.transform.position);
     }
 
     /// <summary>
