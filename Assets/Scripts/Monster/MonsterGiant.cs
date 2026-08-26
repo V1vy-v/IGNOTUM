@@ -17,13 +17,10 @@ public class MonsterGiant : BaseMonster
     //受伤判定碰撞体(父物体)
     public GameObject normalHeadColliderObj;
     public GameObject normalHeartColliderObj;
-    public GameObject newHeadColliderObj;
-    public GameObject newHeartColliderObj;
     //脚部碰撞体父物体
-    public GameObject FeetColliderObj;
+    //public GameObject FeetColliderObj;
     //爪子碰撞体
-    public GameObject ClawColliderObjL;
-    public GameObject ClawColliderObjR;
+    public GameObject ClawColliderObj;
 
 
     protected override void Start()
@@ -36,8 +33,8 @@ public class MonsterGiant : BaseMonster
         //normalHeartColliderObj.SetActive(true);
         //ClawColliderObj.SetActive(false);
         //FeetColliderObj?.SetActive(false);
-        ClawColliderObjL.SetActive(false);
-        ClawColliderObjR.SetActive(false);
+        ClawColliderObj.SetActive(false);
+
 
         attackRange = 4f;
     }
@@ -99,8 +96,7 @@ public class MonsterGiant : BaseMonster
     public void OnClawAtkAnimation()
     {
         print("设置碰撞体");
-        ClawColliderObjR.SetActive(spriteRenderer.flipX);
-        ClawColliderObjL.SetActive(!spriteRenderer.flipX);
+        ClawColliderObj.SetActive(spriteRenderer.flipX);
     }
 
     public void OnTrampleAnimation()
@@ -112,7 +108,6 @@ public class MonsterGiant : BaseMonster
         print("重置碰撞体");
         //ClawColliderObj.SetActive(false);
         //FeetColliderObj.SetActive(false);
-        ClawColliderObjR.SetActive(false);
-        ClawColliderObjL.SetActive(false);
+        ClawColliderObj.SetActive(false);
     }
 }
