@@ -26,8 +26,6 @@ public class PlayerObject : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         body = GetComponent<Rigidbody2D>();
     }
-
-
     private float h, v;
     // Update is called once per frame
     void Update()
