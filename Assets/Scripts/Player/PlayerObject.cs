@@ -77,6 +77,8 @@ public class PlayerObject : MonoBehaviour
         //受伤逻辑
         hp -= dmg;
         //带动
+
+        print("玩家受伤");
     }
     /// <summary>
     /// 玩家死亡
