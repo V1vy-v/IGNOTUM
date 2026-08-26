@@ -35,8 +35,9 @@ public class MonsterGiant : BaseMonster
         //FeetColliderObj?.SetActive(false);
         ClawColliderObj.SetActive(false);
 
-
         attackRange = 4f;
+
+        //订阅玩家死亡事件
     }
 
     public override void TryAttack()
@@ -92,7 +93,7 @@ public class MonsterGiant : BaseMonster
         if (other.CompareTag("Player"))
         {
             // 这里调用玩家受伤方法
-            other.GetComponent<PlayerObject>().Wound(100);
+            //other.GetComponent<PlayerObject>().Wound(100);
         }
     }
 

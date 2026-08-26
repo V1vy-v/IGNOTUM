@@ -19,7 +19,7 @@ public class AtkDetect : MonoBehaviour
             PlayerObject player = collision.GetComponent<PlayerObject>();
             if (player != null)
             {
-                player.Wound(100);//ФЭМо
+                //player.Wound(100);//ФЭМо
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrowObject : MonoBehaviour
 {
-    private float speed = 15f;
+    private float speed = 30f;
     public float damage = 10f;
     public float lifeTime = 5f;
 
