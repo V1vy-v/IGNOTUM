@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// 怪物基类，只处理所有怪物共有的行为
@@ -9,9 +10,10 @@ public abstract class BaseMonster : MonoBehaviour
     protected Animator animator;
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
+    protected NavMeshAgent agent; // 寻路组件
     public PlayerObject playerObject;
 
-    [SerializeField] protected float moveSpeed = 3.5f;//移动参数
+    [SerializeField] protected float moveSpeed = 1f;//移动参数
     [SerializeField] protected float attackRange;//攻击范围
 
     //动画参数哈希
@@ -29,7 +31,11 @@ public abstract class BaseMonster : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerObject = FindObjectOfType<PlayerObject>();
+        agent = GetComponent<NavMeshAgent>();
         InitializeAnimationHashes();
+        agent.speed = moveSpeed;
+        agent.acceleration = 2f;
+        print(agent.speed);
     }
 
     protected virtual void InitializeAnimationHashes()
@@ -65,11 +71,13 @@ public abstract class BaseMonster : MonoBehaviour
         if (state == MonsterState.Idle)
         {
             print("进入攻击范围");
+            agent.isStopped = true;
             rb.velocity = Vector2.zero;
             return;
         }
-        Vector2 direction = (playerObject.transform.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        //Vector2 direction = (playerObject.transform.position - transform.position).normalized;
+        //rb.velocity = direction * moveSpeed;
+        agent.SetDestination(playerObject.transform.position);
     }
 
     /// <summary>
