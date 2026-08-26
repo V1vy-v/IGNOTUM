@@ -15,6 +15,10 @@ public class PlayerObject : MonoBehaviour
     private Vector3 tarPos;
     //是否在射箭
     private bool isShooting = false;
+    //射箭点
+    public Transform firePos;
+    //箭
+    private GameObject arrowObj;
 
     //组件
     public Animator animator;
@@ -50,13 +54,10 @@ public class PlayerObject : MonoBehaviour
         else
             animator.SetBool("Move", false);
 
-        //攻击，按下瞄准，抬起射出
-        if (Input.GetMouseButton(0))
+        //攻击，按下射出
+        if(Input.GetMouseButtonDown(0))
         {
             tarPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
-        else if(Input.GetMouseButtonUp(0))
-        {
             //射箭的动画，动画结束自动调用创建箭的方法
             animator.SetTrigger("Atk");
 
@@ -92,7 +93,8 @@ public class PlayerObject : MonoBehaviour
     }
     public void BuildArrow()
     {
-        print("射出一根箭");
+        arrowObj = Instantiate(Resources.Load<GameObject>("prefab/arrow"), firePos.position, Quaternion.identity);
+        arrowObj.GetComponent<ArrowObject>().Fire(tarPos - firePos.position);
 
 
         isShooting = false;
