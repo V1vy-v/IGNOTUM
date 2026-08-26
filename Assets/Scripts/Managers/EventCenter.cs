@@ -38,7 +38,7 @@ public class EventCenter : BaseManager<EventCenter>
     /// </summary>
     /// <param name="eventName"></param>
     /// <param name="action"></param>
-    public void AddEventlistener(string eventName,UnityAction action)
+    public void AddEventlistener(string eventName, UnityAction action)
     {
         if (dic.ContainsKey(eventName))
         {

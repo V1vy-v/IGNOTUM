@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerObject : MonoBehaviour
 {
     //玩家属性
-    public float hp;
+    private bool isDead;
     public int Speed;
 
+    //两个复活点
+    public Transform revivePos1, revivePos2;
     //当前复活点
     private Vector2 revivePos = new Vector2(0,0);
     //当前瞄准点
@@ -32,6 +34,9 @@ public class PlayerObject : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         body = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        //订阅玩家死亡事件
+        EventCenter.GetInstance().AddEventlistener("PlayerDead", PlayerDead);
     }
     private float h, v;
     // Update is called once per frame
@@ -67,28 +72,23 @@ public class PlayerObject : MonoBehaviour
                 sr.flipX = true;
         }
     }
-
     /// <summary>
-    /// 玩家受伤
+    /// 发布玩家死亡事件
     /// </summary>
-    /// <param name="dmg"></param>
-    public void Wound(int dmg)
+    private void PlayerAndRevive()
     {
-        //受伤逻辑
-        hp -= dmg;
-        //带动
-
-        print("玩家受伤");
+        EventCenter.GetInstance().EventTrigger("PlayerDead");
+        //在复活点复活,触发死亡事件
+        transform.position = revivePos;
+        isDead = false;
     }
+
     /// <summary>
     /// 玩家死亡
     /// </summary>
-    public void DeadAndRevive()
+    public void PlayerDead()
     {
         //播放死亡动画
-
-        //在复活点复活
-
     }
     public void BuildArrow()
     {
