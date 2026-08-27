@@ -17,12 +17,8 @@ public class CameraShake : MonoBehaviour
     {
         cinemachineVirtualCamera = this.GetComponent<CinemachineVirtualCamera>();
         multiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        if (cinemachineVirtualCamera == null)
-            print(1);
-        if(multiChannelPerlin == null) print(2);
         shakeIntensity = 5f;
         shakeTimeTotal = 0.5f;
-        StartCoroutine(startShake());
     }
 
     private void Update()
@@ -35,19 +31,10 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    private void ShakeCamera()
+    public void ShakeCamera()
     {
         shakeTime = shakeTimeTotal;
         multiChannelPerlin.m_AmplitudeGain =  shakeIntensity;
-    }
-    private IEnumerator startShake()
-    {
-        print("¿ªÊ¼¶¶¶¯");
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            ShakeCamera();
-        }
     }
     private void OnDestroy()
     {
