@@ -36,6 +36,7 @@ public class MonsterGiant : BaseMonster
 
         attackRange = 4f;
 
+        clawAttackHash = Animator.StringToHash("ClawAtk");
         //¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
         EventCenter.GetInstance().AddEventlistener("PlayerDead", ResetMonster);
     }
