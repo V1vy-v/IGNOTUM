@@ -6,12 +6,13 @@ public class MonsterEye : BaseMonster
     [SerializeField] private int eyeHp = 1;
     [SerializeField] private Vector2 bornPos = new Vector2(30, 0);
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         //订阅玩家死亡事件
         EventCenter.GetInstance().AddEventlistener("PlayerDead", ResetMonster);
-        //订阅大眼触发
-        EventCenter.GetInstance().AddEventlistener("EyeBorn", ResetMonster);
+        ////订阅大眼触发
+        //EventCenter.GetInstance().AddEventlistener("EyeBorn", ResetMonster);
     }
 
     protected override void ChangeState()
@@ -35,7 +36,8 @@ public class MonsterEye : BaseMonster
 
         if (other.gameObject.layer == playerLayer)
         {
-            Debug.Log("怪物攻击");
+            Debug.Log("玩家受到攻击");
+            other.GetComponent<PlayerObject>().PlayerAndRevive();
         }
     }
 
@@ -52,6 +54,7 @@ public class MonsterEye : BaseMonster
         if (eyeHp <= 0)
         {
             print("大眼死亡");
+            gameObject.SetActive(false);
             // 执行死亡逻辑
             // animator.SetBool(deadHash, true);
             // StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
@@ -65,7 +68,7 @@ public class MonsterEye : BaseMonster
     }
     public override void ResetMonster()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         eyeHp = 1;
         transform.position = bornPos;
         //其它

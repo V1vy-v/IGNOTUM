@@ -28,26 +28,28 @@ public class ArrowObject : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 命中处理：伤害、插在墙上等
-        if (other.gameObject.layer == LayerMask.NameToLayer("Head"))
+        int layer = other.gameObject.layer;
+
+        if (layer == LayerMask.NameToLayer("Head"))
         {
-            other.GetComponent<MonsterGiant>().Wound("Head");
+            other.GetComponentInParent<MonsterGiant>()?.Wound("Head");
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Heart"))
+        else if (layer == LayerMask.NameToLayer("Heart"))
         {
-            other.GetComponent<MonsterGiant>().Wound("Heart");
+            other.GetComponentInParent<MonsterGiant>()?.Wound("Heart");
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Eye"))
+        else if (layer == LayerMask.NameToLayer("Eye"))
         {
-            other.GetComponent<MonsterEye>().Wound("Eye");
+            other.GetComponentInParent<MonsterEye>()?.Wound("Eye");
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-            return;
+        else if (layer == LayerMask.NameToLayer("Player"))
+            return;                      // 忽略发射者
         else
         {
-            rb.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;  // 撞墙等：停下
+            return;                      // 停在墙上（不销毁）
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject);             // 打中怪物后消失
     }
 }

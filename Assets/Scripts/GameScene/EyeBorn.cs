@@ -5,6 +5,7 @@ using UnityEngine;
 public class EyeBorn : MonoBehaviour
 {
     bool isDead = false;
+    public GameObject eye;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class EyeBorn : MonoBehaviour
         {
             //发布大眼触发事件
             EventCenter.GetInstance().EventTrigger("EyeBorn");
+            eye.SetActive(true);
         }
     }
 }
