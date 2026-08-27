@@ -36,7 +36,8 @@ public class MonsterEye : BaseMonster
 
         if (other.gameObject.layer == playerLayer)
         {
-            Debug.Log("怪物攻击");
+            Debug.Log("玩家受到攻击");
+            other.GetComponent<PlayerObject>().PlayerAndRevive();
         }
     }
 
