@@ -80,6 +80,7 @@ public class PlayerObject : MonoBehaviour
     {
         //EventCenter.GetInstance().EventTrigger("PlayerDead");
         //在复活点复活,触发死亡事件
+        DeadChange.Instance.DarkChange();
         transform.position = revivePos;
         isDead = false;
     }
