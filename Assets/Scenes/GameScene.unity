@@ -128092,7 +128092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &482330452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129357,7 +129357,7 @@ PrefabInstance:
       objectReference: {fileID: 1206537051}
     - target: {fileID: 8649269119943381187, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
       propertyPath: m_SortingOrder
-      value: 11
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -129529,7 +129529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477888787395657593, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: m_SortingOrder
-      value: 11
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6572455310965374614, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: eyeHp
@@ -130359,8 +130359,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 1206537050}
+  m_Follow: {fileID: 1206537050}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 12.124355
