@@ -9,7 +9,7 @@ public abstract class BasePanel : MonoBehaviour
     //整体控制淡入淡出的画布组  组件
     private CanvasGroup canvasGroup;
     //淡入淡出的速度
-    private float alphaSpeed = 10;
+    private float alphaSpeed = 2;
     //是否开始显示
     private bool isShow = false;
     //当自己淡出成功时 要执行的委托函数
