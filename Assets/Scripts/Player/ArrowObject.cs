@@ -29,11 +29,11 @@ public class ArrowObject : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // 命中处理：伤害、插在墙上等
-        if(other.gameObject.layer == LayerMask.NameToLayer("Head"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Head"))
         {
             other.GetComponent<MonsterGiant>().Wound("Head");
         }
-        else if(other.gameObject.layer == LayerMask.NameToLayer("Heart"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Heart"))
         {
             other.GetComponent<MonsterGiant>().Wound("Heart");
         }
@@ -41,6 +41,8 @@ public class ArrowObject : MonoBehaviour
         {
             other.GetComponent<MonsterEye>().Wound("Eye");
         }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            return;
         else
         {
             rb.velocity = Vector2.zero;

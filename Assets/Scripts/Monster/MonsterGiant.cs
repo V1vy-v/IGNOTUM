@@ -86,7 +86,7 @@ public class MonsterGiant : BaseMonster
             //发布巨人死亡
             EventCenter.GetInstance().EventTrigger("GiantDead");
 
-            print("怪物死亡");
+            print("巨人死亡");
             this.gameObject.SetActive(false);
             //animator.SetBool(deadHash, true);
             //StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));

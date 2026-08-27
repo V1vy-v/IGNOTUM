@@ -51,7 +51,7 @@ public class MonsterEye : BaseMonster
 
         if (eyeHp <= 0)
         {
-            print("¹ÖÎïËÀÍö");
+            print("´óÑÛËÀÍö");
             // Ö´ÐÐËÀÍöÂß¼­
             // animator.SetBool(deadHash, true);
             // StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
