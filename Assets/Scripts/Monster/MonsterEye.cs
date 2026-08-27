@@ -54,13 +54,13 @@ public class MonsterEye : BaseMonster
         if (eyeHp <= 0)
         {
             print("大眼死亡");
-            gameObject.SetActive(false);
+            StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+            //gameObject.SetActive(false);
             GameSceneMusic.Instance.ChangeBackMusic("cavebackground");
             GameSceneMusic.Instance.HartBeatFast(true);
             UIManager.Instance.ShowPanel<WinPanel>();
             // 执行死亡逻辑
             // animator.SetBool(deadHash, true);
-            StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
             //发布大眼死亡事件
             EventCenter.GetInstance().EventTrigger("EyeDead");
         }
