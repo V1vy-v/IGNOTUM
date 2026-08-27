@@ -54,7 +54,10 @@ public class MonsterEye : BaseMonster
         if (eyeHp <= 0)
         {
             print("´óÑÛËÀÍö");
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            GameSceneMusic.Instance.ChangeBackMusic("cavebackground");
+            GameSceneMusic.Instance.HartBeatFast(true);
+            UIManager.Instance.ShowPanel<WinPanel>();
             // Ö´ĞĞËÀÍöÂß¼­
             // animator.SetBool(deadHash, true);
             StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));

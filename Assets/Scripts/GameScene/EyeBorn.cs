@@ -25,6 +25,8 @@ public class EyeBorn : MonoBehaviour
             //发布大眼触发事件
             EventCenter.GetInstance().EventTrigger("EyeBorn");
             eye.SetActive(true);
+            GameSceneMusic.Instance.ChangeBackMusic("boss2");
+            GameSceneMusic.Instance.HartBeatFast(true);
         }
     }
 }
