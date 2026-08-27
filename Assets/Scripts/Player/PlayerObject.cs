@@ -78,7 +78,7 @@ public class PlayerObject : MonoBehaviour
     /// </summary>
     public void PlayerAndRevive()
     {
-        EventCenter.GetInstance().EventTrigger("PlayerDead");
+        //EventCenter.GetInstance().EventTrigger("PlayerDead");
         //在复活点复活,触发死亡事件
         transform.position = revivePos;
         isDead = false;
