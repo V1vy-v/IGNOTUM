@@ -6,12 +6,13 @@ public class MonsterEye : BaseMonster
     [SerializeField] private int eyeHp = 1;
     [SerializeField] private Vector2 bornPos = new Vector2(30, 0);
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         //¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
         EventCenter.GetInstance().AddEventlistener("PlayerDead", ResetMonster);
-        //¶©ÔÄ´óÑÛ´¥·¢
-        EventCenter.GetInstance().AddEventlistener("EyeBorn", ResetMonster);
+        ////¶©ÔÄ´óÑÛ´¥·¢
+        //EventCenter.GetInstance().AddEventlistener("EyeBorn", ResetMonster);
     }
 
     protected override void ChangeState()
@@ -52,6 +53,7 @@ public class MonsterEye : BaseMonster
         if (eyeHp <= 0)
         {
             print("´óÑÛËÀÍö");
+            gameObject.SetActive(false);
             // Ö´ĞĞËÀÍöÂß¼­
             // animator.SetBool(deadHash, true);
             // StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
@@ -65,7 +67,7 @@ public class MonsterEye : BaseMonster
     }
     public override void ResetMonster()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         eyeHp = 1;
         transform.position = bornPos;
         //ÆäËü
