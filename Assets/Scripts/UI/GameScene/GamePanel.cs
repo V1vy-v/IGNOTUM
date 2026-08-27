@@ -19,7 +19,7 @@ public class GamePanel : BasePanel
         BtnSetting.onClick.AddListener(() =>
         {
             UIManager.Instance.ShowPanel<SettingPanel>();
-            Invoke(nameof(StopGame), 0.1f);
+            Invoke(nameof(StopGame), 0.6f);
         });
     }
 
