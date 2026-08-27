@@ -5,6 +5,7 @@ public class MonsterGiant : BaseMonster
 
     [SerializeField] private int heartHp = 2;
     [SerializeField] private int headHp = 2;
+    [SerializeField] private Vector2 bornPos = new Vector2(-112, -11);
 
     //攻击间隔时间
     [SerializeField] private float attackOffset = 2f;
@@ -38,6 +39,7 @@ public class MonsterGiant : BaseMonster
         attackRange = 4f;
 
         //订阅玩家死亡事件
+        EventCenter.GetInstance().AddEventlistener("PlayerDead", ResetMonster);
     }
 
     public override void TryAttack()
@@ -81,10 +83,14 @@ public class MonsterGiant : BaseMonster
 
         if (heartHp <= 0 && headHp <= 0)
         {
+            //发布巨人死亡
+            EventCenter.GetInstance().EventTrigger("GiantDead");
+
             print("怪物死亡");
             this.gameObject.SetActive(false);
             //animator.SetBool(deadHash, true);
             //StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+
         }
     }
 
@@ -114,5 +120,13 @@ public class MonsterGiant : BaseMonster
         //ClawColliderObj.SetActive(false);
         //FeetColliderObj.SetActive(false);
         ClawColliderObj.SetActive(false);
+    }
+    public override void ResetMonster()
+    {
+        headHp = heartHp = 2;
+        transform.position = bornPos;
+        //重置触发器等等
+        ResetAfterAnimation();
+
     }
 }

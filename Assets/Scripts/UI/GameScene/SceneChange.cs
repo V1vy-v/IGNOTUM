@@ -10,13 +10,13 @@ public class SceneChange : MonoBehaviour
     void Start()
     {
         //订阅触发大眼事件
-        EventCenter.GetInstance().AddEventlistener("???", SacrificeChange);
+        EventCenter.GetInstance().AddEventlistener("EyeBorn", SacrificeChange);
     }
 
     private void SacrificeChange()
     {
         sacrificeScene.SetActive(false);
         //取消订阅触发大眼事件
-        EventCenter.GetInstance().RemoveEventlistener("???", SacrificeChange);
+        EventCenter.GetInstance().RemoveEventlistener("EyeBorn", SacrificeChange);
     }
 }
