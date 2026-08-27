@@ -32,15 +32,15 @@ public class ArrowObject : MonoBehaviour
 
         if (layer == LayerMask.NameToLayer("Head"))
         {
-            other.GetComponentInParent<MonsterGiant>()?.Wound("Head");
+            //other.GetComponentInParent<MonsterGiant>()?.Wound("Head");
         }
         else if (layer == LayerMask.NameToLayer("Heart"))
         {
-            other.GetComponentInParent<MonsterGiant>()?.Wound("Heart");
+            //other.GetComponentInParent<MonsterGiant>()?.Wound("Heart");
         }
         else if (layer == LayerMask.NameToLayer("Eye"))
         {
-            other.GetComponentInParent<MonsterEye>()?.Wound("Eye");
+            //other.GetComponentInParent<MonsterEye>()?.Wound("Eye");
         }
         else if (layer == LayerMask.NameToLayer("Player"))
             return;                      // 忽略发射者

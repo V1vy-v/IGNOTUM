@@ -13,7 +13,7 @@ public abstract class BaseMonster : MonoBehaviour
     protected NavMeshAgent agent; // 寻路组件
     public PlayerObject playerObject;
 
-    protected float moveSpeed = 1.0f;
+    [SerializeField] protected float moveSpeed = 1.0f;
     [SerializeField] protected float attackRange;//攻击范围
 
     //动画参数哈希

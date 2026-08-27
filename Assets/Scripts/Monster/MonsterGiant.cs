@@ -87,9 +87,9 @@ public class MonsterGiant : BaseMonster
             EventCenter.GetInstance().EventTrigger("GiantDead");
 
             print("æﬁ»ÀÀ¿Õˆ");
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             //animator.SetBool(deadHash, true);
-            //StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+            StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
 
         }
     }

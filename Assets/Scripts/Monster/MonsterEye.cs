@@ -54,10 +54,10 @@ public class MonsterEye : BaseMonster
         if (eyeHp <= 0)
         {
             print("´óÑÛËÀÍö");
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             // Ö´ÐÐËÀÍöÂß¼­
             // animator.SetBool(deadHash, true);
-            // StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+            StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
             //·¢²¼´óÑÛËÀÍöÊÂ¼þ
             EventCenter.GetInstance().EventTrigger("EyeDead");
         }
