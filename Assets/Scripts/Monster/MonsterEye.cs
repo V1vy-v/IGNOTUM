@@ -27,7 +27,6 @@ public class MonsterEye : BaseMonster
         if (other.gameObject.layer == playerLayer)
         {
             Debug.Log("¹ÖÎï¹¥»÷");
-            other.GetComponent<PlayerObject>().Wound(9999);
         }
     }
 
