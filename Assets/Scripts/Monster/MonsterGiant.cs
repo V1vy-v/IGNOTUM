@@ -27,8 +27,6 @@ public class MonsterGiant : BaseMonster
     protected override void Start()
     {
         base.Start();
-        clawAttackHash = Animator.StringToHash("ClawAtk");
-        trampleHash = Animator.StringToHash("Trample");
 
         //normalHeadColliderObj.SetActive(true);
         //normalHeartColliderObj.SetActive(true);

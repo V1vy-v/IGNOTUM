@@ -6,7 +6,7 @@ public class CameraMove : MonoBehaviour
     public Transform playerPos;
     public Transform sacrifice;
     public float moveSpeed = 3f;   // 移动速度
-    public float stayTime = 2f;    // 在目标点停留时间
+    public float stayTime = 1f;    // 在目标点停留时间
 
     private bool isFollowing = true;   // 是否跟随玩家
 

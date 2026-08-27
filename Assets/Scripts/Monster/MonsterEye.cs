@@ -57,7 +57,7 @@ public class MonsterEye : BaseMonster
             StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
             //gameObject.SetActive(false);
             GameSceneMusic.Instance.ChangeBackMusic("cavebackground");
-            GameSceneMusic.Instance.HartBeatFast(true);
+            GameSceneMusic.Instance.HartBeatFast(false);
             UIManager.Instance.ShowPanel<WinPanel>();
             // ÷¥––À¿Õˆ¬ﬂº≠
             // animator.SetBool(deadHash, true);
