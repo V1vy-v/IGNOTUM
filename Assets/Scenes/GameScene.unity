@@ -196,7 +196,7 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
+  m_OverrideVoxelSize: 1
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
@@ -274,7 +274,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9c706d6d17e45de43990f3d31fe87549, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127638,7 +127638,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 62d335bd78171f94da55dcd8264e35a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -128092,7 +128092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &482330452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128115,7 +128115,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1206537050}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 10.12436
+    OrthographicSize: 18
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -128257,7 +128257,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.12436
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -128303,7 +128303,7 @@ MonoBehaviour:
   playerPos: {fileID: 1206537050}
   sacrifice: {fileID: 553390922}
   moveSpeed: 3
-  stayTime: 2
+  stayTime: 1
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128424,7 +128424,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 672018931, guid: c0eacde38e8bc6e449c5efc220161653, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -129272,6 +129272,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1828250326135301444, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828250326135301444, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828250326135301444, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828250326135301444, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
       propertyPath: m_LocalPosition.x
       value: -113.32
       objectReference: {fileID: 0}
@@ -129311,6 +129323,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1828250326135301444, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3858195097805442258, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -129339,6 +129355,10 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 1206537051}
+    - target: {fileID: 8649269119943381187, guid: 38bfb25f1fa2e97458df9c77a9ab4b81, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -129449,15 +129469,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3790250205922915503, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3790250205922915503, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3790250205922915503, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3790250205922915503, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -129506,6 +129526,10 @@ PrefabInstance:
     - target: {fileID: 4511326232801617939, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: m_Speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477888787395657593, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6572455310965374614, guid: 47a91b824c2711f4b945a4ce15e78eb3, type: 3}
       propertyPath: eyeHp
@@ -130335,8 +130359,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 1206537050}
+  m_Follow: {fileID: 1206537050}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 12.124355
