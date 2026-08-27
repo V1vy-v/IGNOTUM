@@ -11,7 +11,7 @@ public class PlayerObject : MonoBehaviour
     //两个复活点
     public Transform revivePos1, revivePos2;
     //当前复活点
-    private Vector2 revivePos = new Vector2(0,0);
+    private Vector2 revivePos;
     //当前瞄准点
     private Vector3 tarPos;
     //是否在射箭
@@ -34,9 +34,10 @@ public class PlayerObject : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         body = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        revivePos = revivePos1.position;
 
-        //订阅玩家死亡事件
-        EventCenter.GetInstance().AddEventlistener("PlayerDead", PlayerDead);
+        //订阅复活点更新事件
+        EventCenter.GetInstance().AddEventlistener("UpdateRevivePos", UpdateRevivePos);
     }
     private float h, v;
     // Update is called once per frame
@@ -82,19 +83,22 @@ public class PlayerObject : MonoBehaviour
         transform.position = revivePos;
         isDead = false;
     }
-
     /// <summary>
-    /// 玩家死亡
+    /// 生成箭并射出
     /// </summary>
-    public void PlayerDead()
-    {
-        //播放死亡动画
-    }
     public void BuildArrow()
     {
         arrowObj = Instantiate(Resources.Load<GameObject>("prefab/arrow"), firePos.position, Quaternion.identity);
         arrowObj.GetComponent<ArrowObject>().Fire(tarPos - firePos.position);
 
         isShooting = false;
+    }
+    /// <summary>
+    /// 复活点更新
+    /// </summary>
+    private void UpdateRevivePos()
+    {
+        revivePos = revivePos2.position;
+        EventCenter.GetInstance().RemoveEventlistener("UpdateRevivePos", UpdateRevivePos);
     }
 }
