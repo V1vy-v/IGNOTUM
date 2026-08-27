@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
@@ -9,9 +10,11 @@ public class CameraMove : MonoBehaviour
     public float stayTime = 1f;    // 在目标点停留时间
 
     private bool isFollowing = true;   // 是否跟随玩家
+    private CinemachineBrain brain;
 
     private void Start()
     {
+        brain = GetComponent<CinemachineBrain>();
         EventCenter.GetInstance().AddEventlistener("EyeBorn", MoveToSacriFice);
     }
 
@@ -32,6 +35,7 @@ public class CameraMove : MonoBehaviour
     IEnumerator MoveToAndBack()
     {
         isFollowing = false;
+        if (brain != null) brain.enabled = false;
 
         // 平滑移到目标点
         Vector3 target = new Vector3(sacrifice.position.x, sacrifice.position.y, -10);
@@ -55,6 +59,7 @@ public class CameraMove : MonoBehaviour
         transform.position = back;
 
         // 恢复跟随
+        if (brain != null) brain.enabled = true;
         isFollowing = true;
     }
 }
