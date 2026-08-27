@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class ArrowObject : MonoBehaviour
 {
     private float speed = 30f;
-    public float damage = 10f;
+    public float damage = 1f;
     public float lifeTime = 5f;
 
     private Rigidbody2D rb;
@@ -28,9 +29,17 @@ public class ArrowObject : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // 命中处理：伤害、插在墙上等
-        if(true)
+        if(other.gameObject.layer == LayerMask.NameToLayer("Head"))
         {
-
+            other.GetComponent<MonsterGiant>().Wound("Head");
+        }
+        else if(other.gameObject.layer == LayerMask.NameToLayer("Heart"))
+        {
+            other.GetComponent<MonsterGiant>().Wound("Heart");
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Eye"))
+        {
+            other.GetComponent<MonsterEye>().Wound("Eye");
         }
         else
         {
