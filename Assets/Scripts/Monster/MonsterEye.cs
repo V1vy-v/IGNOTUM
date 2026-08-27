@@ -4,6 +4,15 @@ using UnityEngine;
 public class MonsterEye : BaseMonster
 {
     [SerializeField] private int eyeHp = 1;
+    [SerializeField] private Vector2 bornPos = new Vector2(30, 0);
+
+    private void Start()
+    {
+        //订阅玩家死亡事件
+        EventCenter.GetInstance().AddEventlistener("PlayerDead", ResetMonster);
+        //订阅大眼触发
+        EventCenter.GetInstance().AddEventlistener("EyeBorn", ResetMonster);
+    }
 
     protected override void ChangeState()
     {
@@ -46,10 +55,20 @@ public class MonsterEye : BaseMonster
             // 执行死亡逻辑
             // animator.SetBool(deadHash, true);
             // StartCoroutine(DestroyAfterDelay(2f, spriteRenderer));
+            //发布大眼死亡事件
+            EventCenter.GetInstance().EventTrigger("EyeDead");
         }
     }
 
     public override void TryAttack()
     {
+    }
+    public override void ResetMonster()
+    {
+        gameObject.SetActive(true);
+        eyeHp = 1;
+        transform.position = bornPos;
+        //其它
+
     }
 }

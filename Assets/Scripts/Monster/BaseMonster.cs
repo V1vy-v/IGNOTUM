@@ -129,4 +129,5 @@ public abstract class BaseMonster : MonoBehaviour
     }
     public abstract void Wound(string partTag);
     public abstract void TryAttack();
+    public abstract void ResetMonster();
 }
