@@ -76,7 +76,7 @@ public class PlayerObject : MonoBehaviour
     /// <summary>
     /// 发布玩家死亡事件
     /// </summary>
-    private void PlayerAndRevive()
+    public void PlayerAndRevive()
     {
         EventCenter.GetInstance().EventTrigger("PlayerDead");
         //在复活点复活,触发死亡事件

@@ -99,7 +99,8 @@ public class MonsterGiant : BaseMonster
         if (other.CompareTag("Player"))
         {
             // 这里调用玩家受伤方法
-            //other.GetComponent<PlayerObject>().Wound(100);
+            Debug.Log("玩家受到攻击");
+            other.GetComponent<PlayerObject>().PlayerAndRevive();
         }
     }
 
